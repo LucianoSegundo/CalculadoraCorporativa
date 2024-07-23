@@ -1,0 +1,39 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+<h:head>
+	<title>Calculadora Maloqueira e Sofredora</title>
+	    <h:outputStylesheet name="css/styles.css" />
+	
+</h:head>
+<h:body>
+
+	<h:panelGroup layout="block" id="fachada">
+	</h:panelGroup>
+
+	<h:panelGroup layout="flex" id="corpo">
+
+		<h1>Cadastro</h1>
+
+		<h:form id="FormCadastro" styleClass="formulario" layout="flex">
+
+			<h:outputText value="Insira o Login" />
+			<p:inputText value="#{usuariocon.login}" />
+
+			<h:outputText value="Insira o Senha" />
+			<p:inputText value="#{usuariocon.senha}" />
+
+
+			<h:commandButton action="#{usuariocon.cadastrar()}"
+				value="cadastrar" />
+				
+		</h:form>
+
+		<h:link outcome="irindex" value="Clique aqui para fazer login" styleClass="redirecionamento" />
+	</h:panelGroup>
+
+
+</h:body>
+
+</html>

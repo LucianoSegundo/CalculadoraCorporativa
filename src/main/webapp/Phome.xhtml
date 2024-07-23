@@ -1,0 +1,58 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+<h:head>
+	<title>Calculadora Maloqueira e Sofredora</title>
+    <h:outputStylesheet name="css/styles.css" />
+
+</h:head>
+<h:body>
+
+	<h:panelGroup layout="block" id="fachada">
+		<h:form id="botao" layout="flex">
+			<h:commandButton action="#{calculadora.logout()}" value="Deslogar" />
+			<h:commandButton value="perfil" action="irperfil" />
+		</h:form>
+	</h:panelGroup>
+
+	<h:panelGroup layout="block" id="corpo">
+
+
+		<h1>Calculadora</h1>
+
+		<h:form id="formCalcu" styleClass="formulario">
+
+			<h:panelGroup layout="block" id="entrada">
+				<h:outputText value="Insira o primeiro numero" />
+				<p:inputText value="#{calculadora.numeroA}" />
+
+				<h:outputText value="Insira o segundo numero" />
+				<p:inputText value="#{calculadora.numeroB}" />
+
+				<h:outputText value="Resultado: " />
+				<h:outputText value="#{calculadora.resultado}"
+					styleClass="campo-leitura" />
+
+
+			</h:panelGroup>
+
+			<h:panelGroup layout="block" id="operacoes">
+				<h:commandButton action="#{calculadora.somar()}" value="Soma" />
+				<h:commandButton action="#{calculadora.subtrair()}"
+					value="Subtração" />
+				<h:commandButton action="#{calculadora.dividir()}" value="Divisão" />
+				<h:commandButton action="#{calculadora.multiplicar()}"
+					value="Multiplicação" />
+				<h:commandButton action="#{calculadora.potenciar()}"
+					value="Potenciação" />
+			</h:panelGroup>
+
+		</h:form>
+
+
+	</h:panelGroup>
+
+</h:body>
+
+</html>

@@ -1,0 +1,96 @@
+@charset "UTF-8";
+
+/* Estilo para o corpo da página */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f0f0f0;
+}
+
+/* Estilo para a fachada (barra superior) */
+#fachada {
+    background-color: #333;
+    color: #fff;
+    padding: 10px 20px;
+    text-align: center;
+    height: 5vh;
+}
+
+/* Estilo para o corpo principal */
+#corpo {
+    display: flex;
+    justify-content: center;
+    height: 76vh;
+    flex-direction: column;
+    align-items: center;
+    max-width: 600px;
+    margin: 6vh auto;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+}
+
+/* Estilo para o título "login" */
+h1 {
+    font-size: 24px;
+    margin-bottom: 40px;
+}
+
+/* Estilo para o formulário */
+.formulario {
+    margin-bottom: 20px;
+}
+
+/* Estilo para labels dos inputs */
+label {
+    display: block;
+    margin-bottom: 10px;
+}
+
+/* Estilo para inputs de texto */
+input[type="text"], input[type="password"] {
+    width: calc(100% - 20px);
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    margin-bottom: 20px;
+
+}
+
+/* Estilo para o botão */
+input[type="submit"] {
+    background-color: #333;
+    color: #fff;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+input[type="submit"]:hover {
+    background-color: #555;
+}
+
+/* Estilo para o link de cadastro */
+.redirecionamento {
+    color: #007bff;
+    text-decoration: none;
+    display: block;
+    margin-top: 10px;
+}
+
+.redirecionamento:hover {
+    text-decoration: underline;
+}
+
+.campo-leitura {
+    border: 1px solid #ccc;
+    padding: 5px;
+    background-color: #f0f0f0;
+    display: inline-block;
+}
+
