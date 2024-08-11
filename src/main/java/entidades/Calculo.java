@@ -1,18 +1,26 @@
 package entidades;
 
+import java.io.Serializable;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.ManyToOne;
 
 @Entity
-public class Calculo {
+public class Calculo implements Serializable  {
 	
+
+	private static final long serialVersionUID = 1L;
+
 	@Id
-	@GeneratedValue(strategy = GenerationType.SEQUENCE)
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	private long id;
 	
+	@ManyToOne
+	private Usuario usuario;
 	@Column(nullable = false)
 	
 	private Double numeroA;
@@ -27,13 +35,14 @@ public class Calculo {
 	
 	
 	
-	
-	public Calculo(Double numeroA, Double numerob, String sinal, Double resultado) {
+	public Calculo() {};
+	public Calculo(Double numeroA, Double numerob, String sinal, Double resultado, Usuario user) {
 		super();
 		this.numeroA = numeroA;
 		this.numerob = numerob;
 		this.sinal = sinal;
 		this.resultado = resultado;
+		this.usuario =user;
 	}
 	public long getId() {
 		return id;

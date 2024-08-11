@@ -18,7 +18,8 @@ import jakarta.ejb.Stateless;
 import jakarta.inject.Named;
 
 @Stateless
-@Named("LISTA")
+@Named("banco")
+//@Named("LISTA")
 public class UsuarioListaRepository implements UsuarioInterfaceRepositorio, Serializable {
 
 	private static final long serialVersionUID = 1L;
@@ -76,6 +77,17 @@ public class UsuarioListaRepository implements UsuarioInterfaceRepositorio, Seri
 		return BancoDeDados.removeIf(i -> i.getNome().equals(login));
 
 	}
+	
+	@Override
+	public Usuario atualizar(Usuario usuario) {
+		if (consultar(usuario.getNome()) == null) {
+
+			BancoDeDados.add(usuario);
+			return usuario;
+		}
+		return null;
+	}
+	
 	private List<Usuario> recuperarLista(){
 		
 		File bancoBecap = new File("\"./bancolocal/bancoBecap.txt\"");
@@ -110,5 +122,7 @@ public class UsuarioListaRepository implements UsuarioInterfaceRepositorio, Seri
 	public void setBancoDeDados(List<Usuario> bancoDeDados) {
 		BancoDeDados = bancoDeDados;
 	}
+
+	
 
 }

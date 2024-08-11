@@ -4,17 +4,18 @@ import java.io.Serializable;
 
 import entidades.Usuario;
 import interfaces.UsuarioInterfaceRepositorio;
+import jakarta.ejb.Stateless;
 import jakarta.inject.Named;
-import jakarta.inject.Singleton;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
 
-@Singleton
+@Stateless
 //@Named("banco")
-//public class UsuarioRepository implements UsuarioInterfaceRepositorio, Serializable{
-	public class UsuarioRepository {
+@Named("LISTA")
+public class UsuarioRepository implements UsuarioInterfaceRepositorio, Serializable{
+	//public class UsuarioRepository {
 
-	@PersistenceContext
+	@PersistenceContext(unitName = "Unidade")
 	private EntityManager gerente;
 
 	public UsuarioRepository() {
@@ -24,16 +25,23 @@ import jakarta.persistence.PersistenceContext;
 
 		if (!gerente.contains(usuario)) {
 
-			if (gerente.find(Usuario.class, usuario.getNome()) == null)
 				this.gerente.persist(usuario);
+				return usuario;
 
-			else
-				return null;
-		} else
-			usuario = gerente.merge(usuario);
 
-		return usuario;
+		} else return null;
+			
+
 	}
+	
+	@Override
+	public Usuario atualizar(Usuario usuario) {
+		
+		if (gerente.find(Usuario.class, usuario.getNome()) != null) return gerente.merge(usuario);
+		
+		return null;
+	}
+
 
 	public Usuario consultar(String login) {
 		Usuario usuario = this.gerente.find(Usuario.class, login);
@@ -61,4 +69,5 @@ import jakarta.persistence.PersistenceContext;
 		this.gerente = gerente;
 	}
 
+	
 }
