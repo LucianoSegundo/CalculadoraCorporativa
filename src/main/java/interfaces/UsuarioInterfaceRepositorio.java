@@ -10,4 +10,8 @@ public interface UsuarioInterfaceRepositorio  {
 	public Usuario consultar(String login);
 	
 	public boolean remover(String login);
+	
+	public Usuario atualizar(Usuario usuario);
+
+	
 }

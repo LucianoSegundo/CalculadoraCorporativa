@@ -1,15 +1,19 @@
 package entidades;
 
+import java.io.Serializable;
 import java.util.List;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
 
 @Entity
-public class Usuario {
+public class Usuario implements Serializable {
 	
+	private static final long serialVersionUID = 1L;
+
 	@Id
 	@Column(nullable = false)
 	private String nome;
@@ -17,9 +21,10 @@ public class Usuario {
 	@Column(nullable = false)
 	private String senha;
 	
-	@OneToMany
+	@OneToMany(cascade = CascadeType.ALL)
 	private List<Calculo> historico;
 
+	public Usuario() {}
 	public Usuario(String nome, String senha, List<Calculo> historico) {
 		super();
 		this.nome = nome;

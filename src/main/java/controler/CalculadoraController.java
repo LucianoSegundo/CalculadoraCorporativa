@@ -58,8 +58,10 @@ public class CalculadoraController implements Serializable {
     }
     public void somar() {
         if (validarNumeros()) {
-            Calculo cal = calculadora.somar(numeroA, numeroB);
-            processarCalculo(cal);
+            Usuario user = usuarioRepositorio.consultar(mecanismoLogin.getUsuario());
+
+            Calculo cal = calculadora.somar(numeroA, numeroB, user);
+            processarCalculo(cal, user);
         } else {
             reclamacao("é necessário 2 números válidos para calcular");
         }
@@ -67,8 +69,10 @@ public class CalculadoraController implements Serializable {
 
     public void subtrair() {
         if (validarNumeros()) {
-            Calculo cal = calculadora.subtrair(numeroA, numeroB);
-            processarCalculo(cal);
+            Usuario user = usuarioRepositorio.consultar(mecanismoLogin.getUsuario());
+
+            Calculo cal = calculadora.subtrair(numeroA, numeroB, user);
+            processarCalculo(cal, user);
         } else {
             reclamacao("é necessário 2 números válidos para calcular");
         }
@@ -76,8 +80,10 @@ public class CalculadoraController implements Serializable {
 
     public void dividir() {
         if (validarNumeros()) {
-            Calculo cal = calculadora.dividir(numeroA, numeroB);
-            processarCalculo(cal);
+            Usuario user = usuarioRepositorio.consultar(mecanismoLogin.getUsuario());
+
+            Calculo cal = calculadora.dividir(numeroA, numeroB, user);
+            processarCalculo(cal, user);
         } else {
             reclamacao("é necessário 2 números válidos para calcular");
         }
@@ -85,8 +91,10 @@ public class CalculadoraController implements Serializable {
 
     public void multiplicar() {
         if (validarNumeros()) {
-            Calculo cal = calculadora.multiplicar(numeroA, numeroB);
-            processarCalculo(cal);
+            Usuario user = usuarioRepositorio.consultar(mecanismoLogin.getUsuario());
+
+            Calculo cal = calculadora.multiplicar(numeroA, numeroB, user);
+            processarCalculo(cal, user);
         } else {
             reclamacao("é necessário 2 números válidos para calcular");
         }
@@ -94,18 +102,19 @@ public class CalculadoraController implements Serializable {
 
     public void potenciar() {
         if (validarNumeros()) {
-            Calculo cal = calculadora.potenciar(numeroA, numeroB);
-            processarCalculo(cal);
+            Usuario user = usuarioRepositorio.consultar(mecanismoLogin.getUsuario());
+
+            Calculo cal = calculadora.potenciar(numeroA, numeroB, user);
+            processarCalculo(cal, user);
         } else {
             reclamacao("é necessário 2 números para calcular");
         }
     }
 
-    private void processarCalculo(Calculo cal) {
-        Usuario user = usuarioRepositorio.consultar(mecanismoLogin.getUsuario());
+    private void processarCalculo(Calculo cal, Usuario user) {
         if (user != null) {
             user.addCalculo(cal);
-            usuarioRepositorio.salvar(user);
+            usuarioRepositorio.atualizar(user);
             resultado = cal.getResultado().toString();
         } else {
             resultado = "você precisa estar logado para calcular ";
